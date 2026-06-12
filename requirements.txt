@@ -4,3 +4,4 @@ numpy
 requests
 openpyxl
 yfinance
+schwab-py
