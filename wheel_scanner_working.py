@@ -45,7 +45,7 @@ def main():
 
     st.write("Capital used: $" + format(CAPITAL, ",.0f"))
     
-    client = get_client()
+    client = None
 
     TICKERS = pd.read_csv("tickers.csv")["Ticker"].dropna().unique().tolist()
     TICKERS = sorted(set(TICKERS))
