@@ -2,5 +2,5 @@ streamlit
 pandas
 numpy
 requests
-openpyx1
+openpyxl
 yfinance
