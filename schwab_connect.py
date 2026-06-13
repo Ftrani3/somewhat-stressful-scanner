@@ -23,3 +23,7 @@ def get_client():
         token_path=TOKEN_PATH,
         interactive=False,
     )
+    if client is None:
+        raise RuntimeError("Schwab client returned None. Token is probably invalid for Render.")
+
+    return client
