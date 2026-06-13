@@ -16,13 +16,14 @@ def get_client():
     if not os.path.exists(TOKEN_PATH):
         raise RuntimeError(f"Missing token file at {TOKEN_PATH}")
 
-    return auth.easy_client(
+    client = auth.easy_client(
         api_key=API_KEY,
         app_secret=APP_SECRET,
         callback_url=CALLBACK_URL,
         token_path=TOKEN_PATH,
         interactive=False,
     )
+
     if client is None:
         raise RuntimeError("Schwab client returned None. Token is probably invalid for Render.")
 
