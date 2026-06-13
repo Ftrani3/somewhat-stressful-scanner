@@ -45,7 +45,10 @@ def main():
 
     st.write("Capital used: $" + format(CAPITAL, ",.0f"))
     
-    client = None
+    client = get_client()
+        if client is None:
+                st.error("Schwab client is None. Render is not authenticating with Schwab.")
+                st.stop()
 
     TICKERS = pd.read_csv("tickers.csv")["Ticker"].dropna().unique().tolist()
     TICKERS = sorted(set(TICKERS))
