@@ -116,7 +116,6 @@ def main():
         return
 
     df = df.sort_values("Yield %", ascending=False)
-    df = df.drop_duplicates(subset=["Ticker"], keep="first")
     
     st.dataframe(df, use_container_width=True)
 
