@@ -1,18 +1,12 @@
 import os
-import json
-import streamlit as st
 from schwab import auth
 
-API_KEY = st.secrets["SCHWAB_API_KEY"]
-APP_SECRET = st.secrets["SCHWAB_APP_SECRET"]
-CALLBACK_URL = st.secrets["SCHWAB_CALLBACK_URL"]
+API_KEY = os.environ.get("SCHWAB_API_KEY")
+APP_SECRET = os.environ.get("SCHWAB_APP_SECRET")
+CALLBACK_URL = os.environ.get("SCHWAB_CALLBACK_URL")
 TOKEN_PATH = "/etc/secrets/token.json"
 
 def get_client():
-    if "SCHWAB_TOKEN_JSON" in st.secrets:
-        with open(TOKEN_PATH, "w") as f:
-            f.write(st.secrets["SCHWAB_TOKEN_JSON"])
-
     return auth.easy_client(
         api_key=API_KEY,
         app_secret=APP_SECRET,
