@@ -21,7 +21,7 @@ def bb_percent(series):
 def main():
     st.title("Somewhat Stressful Mobile Scanner")
 
-    capital = st.number_input("Available Capital", min_value=500, value=100000, step=500)
+    capital = st.number_input("Available Capital", min_value=500, value=10000, step=500)
     run_scan = st.button("Refresh Scan")
 
     if not run_scan:
