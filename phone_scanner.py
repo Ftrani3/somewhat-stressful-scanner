@@ -117,7 +117,8 @@ def main():
 
     df = df.sort_values("Yield %", ascending=False)
     df = df.drop_duplicates(subset=["Ticker"], keep="first")
-    
+
+    st.write("DUPLICATE FILTER ACTIVE")
     st.dataframe(df, use_container_width=True)
 
     output = BytesIO()
