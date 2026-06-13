@@ -6,7 +6,7 @@ from schwab import auth
 API_KEY = st.secrets["SCHWAB_API_KEY"]
 APP_SECRET = st.secrets["SCHWAB_APP_SECRET"]
 CALLBACK_URL = st.secrets["SCHWAB_CALLBACK_URL"]
-TOKEN_PATH = "token.json"
+TOKEN_PATH = "/etc/secrets/token.json"
 
 def get_client():
     if "SCHWAB_TOKEN_JSON" in st.secrets:
