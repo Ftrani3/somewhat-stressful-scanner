@@ -49,14 +49,14 @@ def main():
             sma150 = close.rolling(150).mean().iloc[-1]
             above_150 = price > sma150
 
-            if current_rsi > 45:
+            if current_rsi > 60:
                 continue
 
-            if current_bb > 45:
+            if current_bb > 70:
                 continue
 
-            if not above_150:
-                continue
+            #if not above_150:
+            #    continue
 
             expirations = stock.options
             if not expirations:
