@@ -418,6 +418,8 @@ def main():
         ascending=[False, False, False]
     )
 
+    df = df.drop_duplicates(subset=["Ticker"], keep="first")
+
     df = df.reset_index(drop=True)
     df.insert(0, "Rank", range(1, len(df) + 1))
 
