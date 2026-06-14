@@ -53,7 +53,7 @@ def main():
     TICKERS = pd.read_csv("tickers.csv")["Ticker"].dropna().unique().tolist()
     TICKERS = sorted(set(TICKERS))
 
-    TICKERS = TICKERS[:150]
+    TICKERS = TICKERS[:50]
 
     print(f"Loaded {len(TICKERS)} tickers from CSV")
 
