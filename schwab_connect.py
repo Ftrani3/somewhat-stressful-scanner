@@ -1,19 +1,19 @@
 import os
-import json
+import shutil
 from schwab import auth
 
 API_KEY = os.environ["SCHWAB_API_KEY"]
 APP_SECRET = os.environ["SCHWAB_APP_SECRET"]
 CALLBACK_URL = os.environ["SCHWAB_CALLBACK_URL"]
 
+SECRET_TOKEN_PATH = "/etc/secrets/token.json"
 TOKEN_PATH = "/tmp/token.json"
 
 def get_client():
-    token_json = os.environ.get("SCHWAB_TOKEN_JSON")
+    if not os.path.exists(SECRET_TOKEN_PATH):
+        raise RuntimeError(f"Missing token file at {SECRET_TOKEN_PATH}")
 
-    if token_json:
-        with open(TOKEN_PATH, "w") as f:
-            json.dump(json.loads(token_json), f)
+    shutil.copyfile(SECRET_TOKEN_PATH, TOKEN_PATH)
 
     return auth.client_from_token_file(
         token_path=TOKEN_PATH,
