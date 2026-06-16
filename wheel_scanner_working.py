@@ -33,7 +33,7 @@ def main():
         CAPITAL = st.number_input(
             "Available Capital",
             min_value=500.0,
-            value=10000.0,
+            value=100000.0,
             step=500.0,
             format="%.0f"
         )
