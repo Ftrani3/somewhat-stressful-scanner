@@ -457,6 +457,13 @@ def main():
         "Wheel Rank Score": "{:.1f}",
     }
 
+    # Convert Worthless Score to a 0-100 scale
+    max_score = top_df["Worthless Score"].max()
+
+    if max_score > 0:
+        top_df["Worthless Score"] = (
+            top_df["Worthless Score"] / max_score * 100
+        ).round(1)    
     styled_df = top_df.style.format(format_cols).apply(
         lambda row: [
             "background-color: #ffcc00; color: black; font-weight: bold" 
