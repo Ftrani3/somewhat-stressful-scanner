@@ -451,7 +451,12 @@ def main():
     }
 
     styled_df = top_df.style.format(format_cols).apply(
-        lambda row: ["background-color: #ffe6e6" if row["Moneyness"] == "ITM" else "" for _ in row],
+        lambda row: [
+            "background-color: #ffcc00; color: black; font-weight: bold" 
+            if row["Moneyness"] == "ITM" 
+            else "" 
+            for _ in row
+        ],
         axis=1
     )
 
