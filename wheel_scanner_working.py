@@ -395,12 +395,19 @@ def main():
         return
 
     df["Wheel Rank Score"] = (
-        df["Assignment Score"] * 1.0
-        + df["Yield %"] * 20
-        + (45 - df["RSI"]) * 1.5
-        + (45 - df["BB%"]) * 1.5
-        + df["% OTM"] * 3
+        (df["Yield %"].clip(0, 1.0) / 1.0) * 20
+        + ((45 - df["RSI"]).clip(0, 45) / 45) * 20
+        + ((45 - df["BB%"]).clip(0, 45) / 45) * 20
+        + (df["% OTM"].clip(0, 10) / 10) * 15
+        + ((1 - df["Delta"].abs()).clip(0, 1)) * 15
+        + (df["Assignment Score"].clip(0, 100) / 100) * 10
     )
+
+    df["Wheel Rank Score"] = df["Wheel Rank Score"].clip(0, 100).round(1)
+
+    df = df.sort_values("Wheel Rank Score", ascending=False)
+    df = df.drop_duplicates(subset=["Ticker"], keep="first")
+
     df["Worthless Score"] = (
         df["% OTM"] * 5
         + (1 - df["Delta"].abs()) * 100
@@ -412,7 +419,7 @@ def main():
     df.loc[df["Moneyness"] == "ITM", "Worthless Score"] -= 75
     
     df = df.sort_values(
-        by=["Worthless Score", "Assignment Score", "Yield %"],
+        by=["Wheel Rank Score", "Worthless Score", "Yield %"],
         ascending=[False, False, False]
     )
 
