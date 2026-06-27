@@ -174,7 +174,7 @@ def main():
             if stock_price is None:
                 continue
 
-            #if stock_price is not None and (stock_price < 5 or stock_price > 150):
+            #if stock_price is not None and (stock_price < 5 or stock_price > 500):
             #    continue
 
 #Earnings filter
@@ -344,7 +344,7 @@ def main():
                         if stock_price is None:
                             continue
 
-                        if stock_price < 5 or stock_price > 150:
+                        if stock_price < 5 or stock_price > 500:
                             continue
 
                         pct_otm = ((stock_price - strike) / stock_price) * 100
